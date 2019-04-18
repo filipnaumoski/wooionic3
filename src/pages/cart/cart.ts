@@ -1,0 +1,56 @@
+import { Component } from '@angular/core';
+import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+
+@Component({
+  selector: 'page-cart',
+  templateUrl: 'cart.html',
+})
+export class CartPage {
+  cartItems: any[] = [];
+  total: any
+  showEmptyCartMessage: boolean = false;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public viewCtrl: ViewController) {
+    this.total = 0.0;
+
+    this.storage.ready().then(() => {
+
+      this.storage.get('cart').then(data => {
+        this.cartItems = data;
+
+        if (this.cartItems.length > 0) {
+          this.cartItems.forEach((item, index) => {
+            console.log('item', +item.product.price);
+            this.total = this.total + (+item.product.price * item.qty);
+            console.log('total', this.total);
+          })
+        } else {
+          this.showEmptyCartMessage = true;
+        }
+        console.log('cartItems', this.cartItems);
+      })
+
+    })
+  }
+
+  removeFromCart(item, index) {
+    let price = item.product.price;
+    let qty = item.qty;
+    this.cartItems.splice(index, 1);
+
+    this.storage.set('cart', this.cartItems).then(data => {
+      this.total = this.total - (price * qty);
+    })
+
+    if (this.cartItems.length == 0) {
+      this.showEmptyCartMessage = true;
+    }
+    console.log('item', item, 'index', index);
+  }
+
+  closeModal() {
+    this.viewCtrl.dismiss();
+  }
+
+}
