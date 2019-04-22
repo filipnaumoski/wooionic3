@@ -14,6 +14,9 @@ import { MenuPageModule } from '../pages/menu/menu.module';
 import { ProductsPageModule } from '../pages/products/products.module';
 import { ProductDetailsPageModule } from '../pages/products/product-details/product-details.module';
 import { CartPageModule } from '../pages/cart/cart.module';
+import { SignupPageModule } from '../pages/signup/signup.module';
+import { LoginPageModule } from '../pages/login/login.module';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import { CartPageModule } from '../pages/cart/cart.module';
     MenuPageModule,
     ProductsPageModule,
     ProductDetailsPageModule,
-    CartPageModule
+    CartPageModule,
+    SignupPageModule,
+    LoginPageModule,
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
