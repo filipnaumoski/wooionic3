@@ -57,7 +57,6 @@ export class MenuPage {
     this.storage.ready().then(()=>{
       this.storage.get('userLoginInfo').then( data =>{
         if(data != null) {
-          console.log("user logged in...");
           this.user = data.user;
           this.loggedIn = true;
         } else {

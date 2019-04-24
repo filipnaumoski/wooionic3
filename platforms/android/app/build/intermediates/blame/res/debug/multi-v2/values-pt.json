@@ -1,0 +1,19 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/filipnaumoski/Documents/Projects/e-commerce-app/WooIonic/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-pt/values-pt.xml",
+            "map": [
+                {
+                    "source": "/Users/filipnaumoski/.gradle/caches/transforms-1/files-1.1/support-compat-27.1.1.aar/e19e5387714f779774218528a0c34c0d/res/values-pt/values-pt.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        }
+    ]
+}

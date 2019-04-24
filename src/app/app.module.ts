@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { IonicStorageModule } from '@ionic/storage';
+import { HttpModule } from '@angular/http';
+import { PayPal } from '@ionic-native/paypal/ngx';
+import { OneSignal } from '@ionic-native/onesignal/ngx';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -16,7 +19,7 @@ import { ProductDetailsPageModule } from '../pages/products/product-details/prod
 import { CartPageModule } from '../pages/cart/cart.module';
 import { SignupPageModule } from '../pages/signup/signup.module';
 import { LoginPageModule } from '../pages/login/login.module';
-import { HttpModule } from '@angular/http';
+import { CheckoutPageModule } from '../pages/cart/checkout/checkout.module';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,8 @@ import { HttpModule } from '@angular/http';
     CartPageModule,
     SignupPageModule,
     LoginPageModule,
-    HttpModule
+    HttpModule,
+    CheckoutPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -45,6 +49,8 @@ import { HttpModule } from '@angular/http';
   providers: [
     StatusBar,
     SplashScreen,
+    PayPal,
+    OneSignal,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

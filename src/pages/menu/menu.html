@@ -6,11 +6,15 @@
   </ion-header>
 
   <ion-content class="card-bg-page">
+
     <ion-card>
       <img src="./assets/imgs/3.jpeg" alt="">
       <div class="card-title">WOOIONIC</div>
       <div class="card-subtitle">Keep Shoping</div>
     </ion-card>
+
+    <ion-item-divider color="danger">Categories</ion-item-divider>
+
     <ion-list>
       <ion-item *ngFor="let category of categories" text-wrap (click)="openCategoryPage(category)" menuClose>
         <ion-icon [name]="category.icon" item-left large></ion-icon>

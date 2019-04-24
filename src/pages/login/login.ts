@@ -26,7 +26,6 @@ export class LoginPage {
     this.http.get('http://localhost:8888/causewayconnect/api/auth/generate_auth_cookie/?insecure=cool&username='
       + this.username + '&password=' + this.password).subscribe(
         data => {
-          console.log('data', data.json()); //user password: u0&3aoYHfNO%nGh3XUSa@6QX
           let response = data.json();
           if (response.error) {
             this.toastCtrl.create({
