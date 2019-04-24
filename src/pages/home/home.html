@@ -1,16 +1,20 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="danger">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Home</ion-title>
   </ion-navbar>
+
+  <ion-toolbar color="danger">
+    <ion-searchbar [(ngModel)]="searchQuery" (search)="onSearch($event)"></ion-searchbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content no-padding>
   <ion-card>
     <ion-slides autoplay="3000" paper>
-      <ion-slide *ngFor="let image of [1,2,3,4]" >
+      <ion-slide *ngFor="let image of [1,2,3,4]">
         <img src="./assets/imgs/{{image}}.jpeg" alt="">
       </ion-slide>
     </ion-slides>
@@ -19,7 +23,7 @@
   <ion-grid>
     <ion-row>
       <ion-slides #productSlides>
-        <ion-slide  *ngFor="let product of products">
+        <ion-slide *ngFor="let product of products">
           <ion-card no-padding>
             <img [src]="product.featured_src" alt="">
             <h1 padding center>{{product.title}}</h1>

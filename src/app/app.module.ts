@@ -20,6 +20,7 @@ import { CartPageModule } from '../pages/cart/cart.module';
 import { SignupPageModule } from '../pages/signup/signup.module';
 import { LoginPageModule } from '../pages/login/login.module';
 import { CheckoutPageModule } from '../pages/cart/checkout/checkout.module';
+import { SearchPageModule } from '../pages/search/search.module';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { CheckoutPageModule } from '../pages/cart/checkout/checkout.module';
     SignupPageModule,
     LoginPageModule,
     HttpModule,
-    CheckoutPageModule
+    CheckoutPageModule,
+    SearchPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
