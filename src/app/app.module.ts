@@ -5,48 +5,28 @@ import { IonicStorageModule } from '@ionic/storage';
 import { HttpModule } from '@angular/http';
 import { PayPal } from '@ionic-native/paypal/ngx';
 import { OneSignal } from '@ionic-native/onesignal/ngx';
-
-import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { MenuPage } from '../pages/menu/menu';
-import { ProductsPage } from './../pages/products/products';
+
+import { MyApp } from './app.component';
 import { MenuPageModule } from '../pages/menu/menu.module';
-import { ProductsPageModule } from '../pages/products/products.module';
-import { ProductDetailsPageModule } from '../pages/products/product-details/product-details.module';
 import { CartPageModule } from '../pages/cart/cart.module';
-import { SignupPageModule } from '../pages/signup/signup.module';
-import { LoginPageModule } from '../pages/login/login.module';
-import { CheckoutPageModule } from '../pages/cart/checkout/checkout.module';
-import { SearchPageModule } from '../pages/search/search.module';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     MenuPageModule,
-    ProductsPageModule,
-    ProductDetailsPageModule,
-    CartPageModule,
-    SignupPageModule,
-    LoginPageModule,
-    HttpModule,
-    CheckoutPageModule,
-    SearchPageModule
+    CartPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    MenuPage,
-    ProductsPage
   ],
   providers: [
     StatusBar,
@@ -54,6 +34,6 @@ import { SearchPageModule } from '../pages/search/search.module';
     PayPal,
     OneSignal,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
-  ]
+  ],
 })
 export class AppModule {}

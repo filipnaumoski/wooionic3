@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 
 import * as WC from 'woocommerce-api';
-import { ProductDetailsPage } from './product-details/product-details';
-
+@IonicPage()
 @Component({
   selector: 'page-products',
   templateUrl: 'products.html'
@@ -14,7 +13,7 @@ export class ProductsPage {
   page: number;
   category: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController) {
     this.page = 1;
     this.category = this.navParams.get('category');
 
@@ -31,7 +30,6 @@ export class ProductsPage {
         this.products = JSON.parse(res.body).products;
       },
       err => {
-        console.log('err', err);
       }
     );
   }
@@ -51,10 +49,10 @@ export class ProductsPage {
         if (temp.length < 10) {
           event.enable(false);
 
-          // this.toastCtrl.create({
-          //   message: 'No more products!',
-          //   duration: 5000
-          // }).present()
+          this.toastCtrl.create({
+            message: 'No more products!',
+            duration: 5000
+          }).present()
         }
       },
       err => { }
@@ -62,6 +60,6 @@ export class ProductsPage {
   }
 
   openProductDetails(product) {
-    this.navCtrl.push(ProductDetailsPage, { "product": product });
+    this.navCtrl.push('ProductDetailsPage', { "product": product });
   }
 }

@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController, AlertController } from 'ionic-angular';
 
 import * as WC from 'woocommerce-api';
-import { e } from '@angular/core/src/render3';
-
+@IonicPage()
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html',
@@ -71,7 +70,6 @@ export class SignupPage {
     }
 
     this.WooCommerce.postAsync("customers", customerData).then(data => {
-      console.log('data', JSON.parse(data.body));
       let response = JSON.parse(data.body);
       if (response.customer) {
         this.alertCtrl.create({
@@ -91,7 +89,6 @@ export class SignupPage {
         })
       }
     }, err => {
-      console.log('err', JSON.parse(err));
     })
 
   }
@@ -102,7 +99,6 @@ export class SignupPage {
 
     if (reg.test(this.newUser.email)) {
       this.WooCommerce.getAsync('customers/email/' + this.newUser.email).then(data => {
-        console.log('email', JSON.parse(data.body));
         let res = JSON.parse(data.body);
         if (res.errors) {
           validEmail = true;

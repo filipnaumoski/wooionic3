@@ -1,9 +1,8 @@
-import { CheckoutPage } from './checkout/checkout';
-import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
-import { LoginPage } from '../login/login';
 
+import { Component } from '@angular/core';
+import { NavController, NavParams, ViewController, IonicPage } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
+@IonicPage()
 @Component({
   selector: 'page-cart',
   templateUrl: 'cart.html',
@@ -23,14 +22,11 @@ export class CartPage {
 
         if (this.cartItems.length > 0) {
           this.cartItems.forEach((item, index) => {
-            console.log('item', +item.product.price);
             this.total = this.total + (+item.product.price * item.qty);
-            console.log('total', this.total);
           })
         } else {
           this.showEmptyCartMessage = true;
         }
-        console.log('cartItems', this.cartItems);
       })
 
     })
@@ -48,7 +44,6 @@ export class CartPage {
     if (this.cartItems.length == 0) {
       this.showEmptyCartMessage = true;
     }
-    console.log('item', item, 'index', index);
   }
 
   closeModal() {
@@ -58,9 +53,9 @@ export class CartPage {
   checkout() {
     this.storage.get('userLoginInfo').then( data => {
       if(data != null) {
-        this.navCtrl.push(CheckoutPage);
+        this.navCtrl.push('CheckoutPage');
       } else {
-        this.navCtrl.push(LoginPage, {next: CheckoutPage})
+        this.navCtrl.push('LoginPage', {next: 'CheckoutPage'})
       }
     })
   }

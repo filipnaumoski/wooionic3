@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, IonicPage } from 'ionic-angular';
 import * as WC from 'woocommerce-api';
 
 import { ProductDetailsPage } from './../products/product-details/product-details';
-
+@IonicPage()
 @Component({
   selector: 'page-search',
   templateUrl: 'search.html',

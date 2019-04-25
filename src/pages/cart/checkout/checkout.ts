@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, IonicPage } from 'ionic-angular';
 import * as WC from 'woocommerce-api';
 import { Storage } from '@ionic/storage';
 import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal/ngx';
-
-import { HomePage } from '../../home/home';
-
+@IonicPage()
 @Component({
   selector: 'page-checkout',
   templateUrl: 'checkout.html',
@@ -42,7 +40,6 @@ export class CheckoutPage {
       let email = data.user.email
 
       this.WooCommerce.getAsync('customers/email/' + email).then(data => {
-        console.log('data', JSON.parse(data.body).customer)
         this.newOrder = JSON.parse(data.body).customer;
       })
     })
@@ -131,7 +128,6 @@ export class CheckoutPage {
         data.line_items = orderItems;
         let orderData: any = {};
         orderData.order = data;
-        console.log('order', orderData);
         this.WooCommerce.postAsync('orders' + orderData).then(data => {
           let response = JSON.parse(data.body).customer;
           this.alertCtrl.create({
@@ -140,7 +136,7 @@ export class CheckoutPage {
             buttons: [{
               text: "OK",
               handler: () => {
-                this.navCtrl.setRoot(HomePage);
+                this.navCtrl.setRoot('HomePage');
               }
             }]
           }).present();

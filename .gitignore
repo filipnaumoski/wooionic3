@@ -12,11 +12,13 @@ log.txt
 .vscode/
 .sass-cache/
 .versions/
+.sourcemaps/
 coverage/
 collection/
 dist/
 node_modules/
 platforms/
+www/
 tmp/
 temp/
 core/theme-builder/
