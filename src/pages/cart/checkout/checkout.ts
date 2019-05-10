@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, IonicPage } from 'ionic-angular';
-import * as WC from 'woocommerce-api';
 import { Storage } from '@ionic/storage';
 import { PayPal, PayPalPayment, PayPalConfiguration } from '@ionic-native/paypal/ngx';
+import { WoocommerceProvider } from '../../../providers/woocommerce/woocommerce';
 @IonicPage()
 @Component({
   selector: 'page-checkout',
@@ -16,17 +16,20 @@ export class CheckoutPage {
   billing_shipping_same: boolean;
   userInfo: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage, public alertCtrl: AlertController, private payPal: PayPal) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public storage: Storage,
+    public alertCtrl: AlertController,
+    private payPal: PayPal,
+    public WC: WoocommerceProvider
+    ) {
     this.newOrder = {};
     this.newOrder.billing_address = {};
     this.newOrder.shipping_address = {};
     this.billing_shipping_same = false;
 
-    this.WooCommerce = WC({
-      url: 'http://localhost:8888/causewayconnect',
-      consumerKey: 'ck_ef17b728d716ec4dcda3d8690f05859cbafa05d0',
-      consumerSecret: 'cs_235d42d99363f30b567e35e22a6ff7104751462c'
-    });
+    this.WooCommerce = WC.init();
 
     this.paymentMethods = [
       { method_id: "bacs", method_title: "Direct Bank Transfer" },

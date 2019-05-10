@@ -25701,6 +25701,10 @@ page-cart img {
   height: 60px !important;
 }
 
+page-cart .compact .item-inner .input-wrapper ion-label {
+  margin: 0 !important;
+}
+
 page-home ion-card {
   margin: 0 !important;
   width: 100% !important;

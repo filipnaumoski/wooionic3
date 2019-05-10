@@ -3,4 +3,7 @@ page-cart {
     width: 60px !important;
     height: 60px !important;
   }
+  .compact .item-inner .input-wrapper ion-label {
+    margin: 0 !important;
+  }
 }

@@ -18,19 +18,35 @@
       </ion-row>
     </ion-grid>
   </ion-card>
-
-  <ion-list>
-    <ion-item *ngFor="let item of cartItems; let i = index">
+  <ion-card *ngFor="let item of cartItems; let i = index">
+    <ion-item color="light">
       <ion-thumbnail item-left>
         <img [src]="item.product.featured_src" alt="" />
       </ion-thumbnail>
       <h2>{{ item.product.title }}</h2>
       <p>{{ item.qty }} X &pound;{{ item.product.price }}</p>
-      <button ion-button clear item-right color="danger" (click)="removeFromCart(item, i)">
+      <!-- <button ion-button clear item-right color="danger" (click)="removeFromCart(item, i)">
         <ion-icon name="close-circle"></ion-icon>
-      </button>
+      </button> -->
     </ion-item>
-  </ion-list>
+
+    <ion-item class="compact">
+      <ion-row no-padding>
+        <ion-col col-8>
+          <button ion-button icon-only clear color="danger" (click)="changeQty(item, i, -1)">
+            <ion-icon name="remove-circle"></ion-icon>
+          </button>
+          <button ion-button clear color="danger">{{item.qty}}</button>
+          <button ion-button icon-only clear color="danger" (click)="changeQty(item, i, 1)">
+            <ion-icon name="add-circle"></ion-icon>
+          </button>
+        </ion-col>
+        <ion-col col-4>
+          <button ion-button small outline color="danger" style="width: 64px;" (click)="removeFromCart(item, i)">Remove</button>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+  </ion-card>
 
   <ion-grid>
     <ion-card>
@@ -51,19 +67,18 @@
     </ion-card>
   </ion-grid>
 
-  <ion-footer>
-    <ion-toolbar>
-      <ion-grid>
-        <ion-row>
-          <ion-col>
-            <button ion-button color="danger" outline block (click)="closeModal()">Back</button>
-          </ion-col>
-          <ion-col>
-              <button ion-button color="danger" block (click)="checkout()">Checkout</button>
-            </ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-toolbar>
-  </ion-footer>
-
 </ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <button ion-button color="danger" outline block (click)="closeModal()">Back</button>
+        </ion-col>
+        <ion-col>
+          <button ion-button color="danger" block (click)="checkout()">Checkout</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-footer>

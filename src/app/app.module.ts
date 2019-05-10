@@ -11,6 +11,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { MyApp } from './app.component';
 import { MenuPageModule } from '../pages/menu/menu.module';
 import { CartPageModule } from '../pages/cart/cart.module';
+import { WoocommerceProvider } from '../providers/woocommerce/woocommerce';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { CartPageModule } from '../pages/cart/cart.module';
     SplashScreen,
     PayPal,
     OneSignal,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    WoocommerceProvider
   ],
 })
 export class AppModule {}

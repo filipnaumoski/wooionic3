@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 
-import * as WC from 'woocommerce-api';
+import { WoocommerceProvider } from '../../providers/woocommerce/woocommerce';
 @IonicPage()
 @Component({
   selector: 'page-products',
@@ -13,15 +13,16 @@ export class ProductsPage {
   page: number;
   category: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public toastCtrl: ToastController,
+    public WC: WoocommerceProvider
+    ) {
     this.page = 1;
     this.category = this.navParams.get('category');
 
-    this.WooCommerce = WC({
-      url: 'http://localhost:8888/causewayconnect',
-      consumerKey: 'ck_ef17b728d716ec4dcda3d8690f05859cbafa05d0',
-      consumerSecret: 'cs_235d42d99363f30b567e35e22a6ff7104751462c'
-    });
+    this.WooCommerce = WC.init();
 
     this.WooCommerce.getAsync(
       'products?filter[category]=' + this.category.slug

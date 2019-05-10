@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, Slides, ToastController, IonicPage } from 'ionic-angular';
-import * as WC from 'woocommerce-api';
+import { WoocommerceProvider } from '../../providers/woocommerce/woocommerce';
 @IonicPage()
 @Component({
   selector: 'page-home',
@@ -14,14 +14,14 @@ export class HomePage {
   searchQuery: ''
 
   @ViewChild('productSlides') productSlides: Slides;
-  constructor(public navCtrl: NavController, public toastCtrl: ToastController) {
+  constructor(
+    public navCtrl: NavController,
+    public toastCtrl: ToastController,
+    public WC: WoocommerceProvider
+    ) {
     this.page = 2;
 
-    this.WooCommerce = WC({
-      url: 'http://localhost:8888/causewayconnect',
-      consumerKey: 'ck_ef17b728d716ec4dcda3d8690f05859cbafa05d0',
-      consumerSecret: 'cs_235d42d99363f30b567e35e22a6ff7104751462c'
-    });
+    this.WooCommerce = WC.init();
 
     this.loadMoreProducts(null);
 
